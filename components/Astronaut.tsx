@@ -50,14 +50,16 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
 
 
     useEffect(() => {
-        window.addEventListener("mousemove", (ev) => {
+        const rotate = (ev: MouseEvent) => {
             if (!group?.current) return;
             const pos = {
                 x: 2 * (ev.x / window.screen.width) - 1,
                 y: 2 * (ev.y / window.screen.height) - 1
             }
             setPosition(pos)
-        }, false)
+        }
+        window.addEventListener("mousemove", rotate, false)
+        window.addEventListener("click", rotate, false)
     }, [])
 
     return (

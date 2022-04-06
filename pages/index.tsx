@@ -1,7 +1,7 @@
 import React from "react";
 import type {NextPage} from 'next'
 import Head from 'next/head'
-import {Background} from "./Background";
+import {Background} from "../components/Background";
 import faker from "@faker-js/faker";
 
 const Home: NextPage = () => {
