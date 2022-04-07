@@ -1,8 +1,7 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import {Background} from "../components/Background";
-import faker from "@faker-js/faker";
 
 const Home: NextPage = () => {
     return (
@@ -24,11 +23,11 @@ const Home: NextPage = () => {
                 }}>
                     <h1 style={{color: "wheat", fontSize: "4em"}}>Jakub Śpiewak</h1>
                 </div>
-                <div style={{position: "absolute", top:0, left: 0, zIndex: -100}}>
+                <div style={{position: "absolute", top: 0, left: 0, zIndex: -100}}>
                     <Background/>
                 </div>
             </main>
-    </>
+        </>
     )
 }
 

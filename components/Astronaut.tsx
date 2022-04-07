@@ -22,6 +22,8 @@ type GLTFResult = GLTF & {
     }
 }
 
+export const ASTRONAUT_COLOR = "#30344b"
+
 type ActionName = 'wave' | 'floating' | 'idle' | 'moon_walk'
 
 interface Position {
@@ -35,22 +37,23 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
     const {nodes, animations} = useGLTF('/astronaut.gltf') as GLTFResult
     const {actions} = useAnimations(animations, group)
     useEffect(() => {
-        actions.idle?.reset().fadeIn(0.5).play()
-    }, [actions.idle])
+        actions.wave?.reset().fadeIn(0.5).play()
+    }, [actions.wave])
 
-    const material = new THREE.MeshLambertMaterial({color: "#30344b"})
+    const material = new THREE.MeshLambertMaterial({color: ASTRONAUT_COLOR})
 
     useFrame(({clock}) => {
         if (!group?.current) return;
         const time = clock.getElapsedTime();
-        const sin = Math.sin(time) / 2
-        group.current.rotation.y = sin * position.x;
-        group.current.rotation.x = sin * position.y;
+        const sin = Math.sin(time) / 4
+        group.current.rotation.y = sin + position.x;
+        group.current.rotation.x = sin + position.y;
     })
 
 
     useEffect(() => {
-        const rotate = (ev: MouseEvent) => {
+        const rotateMouse = (ev: MouseEvent) => {
+            ev.preventDefault()
             if (!group?.current) return;
             const pos = {
                 x: 2 * (ev.x / window.screen.width) - 1,
@@ -58,8 +61,9 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
             }
             setPosition(pos)
         }
-        window.addEventListener("mousemove", rotate, false)
-        window.addEventListener("click", rotate, false)
+        window.addEventListener("mousemove", rotateMouse, false)
+        window.addEventListener("pointermove", rotateMouse, false)
+        window.addEventListener("click", rotateMouse, false)
     }, [])
 
     return (
