@@ -6,26 +6,23 @@ import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
-import {MathUtils} from "three";
-import {useFrame} from "@react-three/fiber";
 import {HasPhase, RADIUS} from "../LogoOrbit";
+import {useFrame} from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
-    XMLID_2_: THREE.Mesh
     Curve: THREE.Mesh
-    Curve001: THREE.Mesh
+    Curve002: THREE.Mesh
   }
   materials: {
-    ['Material.002']: THREE.MeshStandardMaterial
-    ['Material.003']: THREE.MeshStandardMaterial
+    ['SVGMat.003']: THREE.MeshStandardMaterial
+    ['SVGMat.005']: THREE.MeshStandardMaterial
   }
 }
 
 export default function Model({ ...props }: JSX.IntrinsicElements['group'] & HasPhase) {
   const group = useRef<THREE.Group>()
-  const { nodes, materials } = useGLTF('/kotlin.gltf') as GLTFResult
-
+  const { nodes, materials } = useGLTF('/react.gltf') as GLTFResult
 
   useFrame(({clock}) => {
     if (!group?.current) return
@@ -41,11 +38,10 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group'] & Has
 
   return (
       <group ref={group} {...props} dispose={null}>
-      <mesh geometry={nodes.XMLID_2_.geometry} material={materials['Material.002']} position={[0.29, 0, 0.72]} />
-      <mesh geometry={nodes.Curve.geometry} material={materials['Material.002']} position={[-0.38, 0, -0.58]} scale={[0.54, 1, 0.54]} />
-      <mesh geometry={nodes.Curve001.geometry} material={materials['Material.003']} position={[0.09, 0, -0.14]} scale={[0.54, 1, 0.54]} />
+      <mesh geometry={nodes.Curve.geometry} material={materials['SVGMat.003']} scale={[14.52, 10, 14.52]} />
+      <mesh geometry={nodes.Curve002.geometry} material={materials['SVGMat.005']} scale={[14.52, 2.5, 14.52]} />
     </group>
   )
 }
 
-useGLTF.preload('/kotlin.gltf')
+useGLTF.preload('/react.gltf')

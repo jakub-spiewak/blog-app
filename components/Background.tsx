@@ -5,6 +5,7 @@ import Kotlin from "./logos/Kotlin"
 import Spring from "./logos/Spring"
 import Astronaut from "./Astronaut"
 import {LoadingSpinner} from "./LoadingSpinner";
+import {LogoOrbit} from "./LogoOrbit";
 // import {MathUtils} from "three";
 
 export const Background = () => {
@@ -26,10 +27,7 @@ export const Background = () => {
                     <ambientLight intensity={0.5}/>
                     <directionalLight position={[-2, 5, 2]} intensity={0.5}/>
                     <Astronaut position={[0, -1.5, 0]}/>
-                    <Java position={[-3, 0, 0]}/>
-                    <Kotlin position={[0, 0, 0]}/>
-                    <Spring position={[3, 0, 0]}/>
-                    {/*<OrbitControls/>*/}
+                    <LogoOrbit/>
                 </Canvas>
             </Suspense>
         </div>

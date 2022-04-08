@@ -8,6 +8,7 @@ import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
 import {MathUtils} from "three";
 import {useFrame} from "@react-three/fiber";
+import {HasPhase, RADIUS} from "../LogoOrbit";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -18,24 +19,25 @@ type GLTFResult = GLTF & {
   }
 }
 
-const Radius = 3
-
-const rad90deg = MathUtils.degToRad(90)
-
-export default function Model({ ...props }: JSX.IntrinsicElements['group']) {
+export default function Model({ ...props }: JSX.IntrinsicElements['group'] & HasPhase) {
   const group = useRef<THREE.Group>()
   const { nodes, materials } = useGLTF('/spring.gltf') as GLTFResult
-  useFrame(({clock}) => {
-    if (!group.current) return;
 
-    const time = (clock.getElapsedTime() / 2) - MathUtils.degToRad(120)
-    group.current.position.x = Radius * Math.sin(time)
-    group.current.position.z = Radius * Math.cos(time)
-    group.current.position.y = Radius * Math.sin(time) / 4
-    group.current.rotation.z = time * 2.5
+
+  useFrame(({clock}) => {
+    if (!group?.current) return
+
+    const time = clock.getElapsedTime() / 4
+    const {phase} = props
+    const x = RADIUS * Math.sin(time + phase)
+    const y = RADIUS * Math.cos(time + phase)
+    const z = RADIUS * Math.sin(time + phase) / 4
+
+    group.current.position.set(x, z, y)
   })
+
   return (
-      <group ref={group} scale={[0.2, 0.2, 0.2]} rotation={[rad90deg, 0, 0]} {...props} dispose={null}>
+      <group ref={group} {...props} dispose={null}>
       <mesh geometry={nodes.Curve.geometry} material={materials['SVGMat.001']} />
     </group>
   )
