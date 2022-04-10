@@ -1,0 +1,37 @@
+.title {
+    font-size: 5em;
+    margin-bottom: 0;
+    font-family: Magiel-Black, Arial, serif;
+}
+
+.subTitle {
+    margin-top: 0;
+}
+
+.gradientText {
+    background: linear-gradient(45deg,
+    rgb(58, 74, 180) 0%,
+    rgba(136, 136, 136, 1) 25%,
+    rgba(252, 176, 69, 1) 50%,
+    rgba(136, 136, 136, 1) 75%,
+    rgb(58, 74, 180) 100%
+    );
+
+
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 7s linear infinite;
+}
+
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+
+.titleContainer {
+    padding: 2rem;
+}

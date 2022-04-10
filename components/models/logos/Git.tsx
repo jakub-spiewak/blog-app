@@ -12,17 +12,15 @@ import {useFrame} from "@react-three/fiber";
 type GLTFResult = GLTF & {
   nodes: {
     Curve: THREE.Mesh
-    Curve001: THREE.Mesh
   }
   materials: {
-    SVGMat: THREE.MeshStandardMaterial
     ['SVGMat.001']: THREE.MeshStandardMaterial
   }
 }
 
 export default function Model({ ...props }: JSX.IntrinsicElements['group'] & HasPhase) {
   const group = useRef<THREE.Group>()
-  const { nodes, materials } = useGLTF('/typescript.gltf') as GLTFResult
+  const { nodes, materials } = useGLTF('/git.gltf') as GLTFResult
 
   useFrame(({clock}) => {
     if (!group?.current) return
@@ -38,10 +36,9 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group'] & Has
 
   return (
       <group ref={group} {...props} dispose={null}>
-      <mesh geometry={nodes.Curve.geometry} material={materials.SVGMat} />
-      <mesh geometry={nodes.Curve001.geometry} material={materials['SVGMat.001']} />
+      <mesh geometry={nodes.Curve.geometry} material={materials['SVGMat.001']} />
     </group>
   )
 }
 
-useGLTF.preload('/typescript.gltf')
+useGLTF.preload('/models/logos/git.gltf')

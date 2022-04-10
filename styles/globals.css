@@ -1,22 +1,29 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+    color: wheat;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@font-face {
+    font-family: "Praho-Black";
+    src: url("/fonts/Praho-Black.ttf");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  max-height: 100vh;
-  max-width: 100vw;
-  /*overflow: hidden;*/
-  /*position: fixed;*/
+@font-face {
+    font-family: "Magiel-Black";
+    src: url("/fonts/Magiel-Black.ttf");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+.background {
+    position: absolute;
 }

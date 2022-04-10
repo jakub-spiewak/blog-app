@@ -48,4 +48,4 @@ export default function Model({ ...props }: JSX.IntrinsicElements['group'] & Has
   )
 }
 
-useGLTF.preload('/kotlin.gltf')
+useGLTF.preload('/models/logos/kotlin.gltf')

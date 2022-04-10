@@ -22,9 +22,10 @@ type GLTFResult = GLTF & {
     }
 }
 
-export const ASTRONAUT_COLOR = "#30344b"
+export const ASTRONAUT_COLOR = "#232e44"
 
 type ActionName = 'wave' | 'floating' | 'idle' | 'moon_walk'
+const ActionNameList: ActionName[] = ['wave', 'floating', 'idle', 'moon_walk']
 
 interface Position {
     x: number,
@@ -34,22 +35,25 @@ interface Position {
 export default function Model({...props}: JSX.IntrinsicElements['group']) {
     const group = useRef<THREE.Group>()
     const [position, setPosition] = useState<Position>({x: 0, y: 0})
-    const {nodes, animations} = useGLTF('/astronaut.gltf') as GLTFResult
+    const {nodes, animations} = useGLTF('/models/astronaut.gltf') as GLTFResult
     const {actions} = useAnimations(animations, group)
-    useEffect(() => {
-        actions.wave?.reset().fadeIn(0.5).play()
-    }, [actions.wave])
 
-    const material = new THREE.MeshLambertMaterial({color: ASTRONAUT_COLOR})
+    useEffect(() => {
+        actions.moon_walk?.reset().fadeIn(0.5).play()
+    }, [])
+
+    const material = new THREE.MeshLambertMaterial({color: ASTRONAUT_COLOR, transparent: false, opacity: 0.8})
 
     useFrame(({clock}) => {
         if (!group?.current) return;
+        // material.opacity = 0.9
         const time = clock.getElapsedTime();
         const sin = Math.sin(time) / 4
         group.current.rotation.y = sin + position.x;
         group.current.rotation.x = sin + position.y;
     })
 
+    // material.wireframe = true
 
     useEffect(() => {
         const rotateMouse = (ev: MouseEvent) => {
@@ -61,14 +65,13 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
             }
             setPosition(pos)
         }
-        window.addEventListener("mousemove", rotateMouse, false)
-        window.addEventListener("pointermove", rotateMouse, false)
-        window.addEventListener("click", rotateMouse, false)
+        // window.addEventListener("mousemove", rotateMouse, false)
+        // window.addEventListener("pointermove", rotateMouse, false)
     }, [])
 
     return (
         <group ref={group} {...props} dispose={null}>
-            <group rotation={[0, 0, 0]} position={[0, -1, 0]} scale={0.02}>
+            <group rotation={[0, 0, 0]} position={[0, 0, 0]} scale={0.015}>
                 <primitive object={nodes.GLTF_created_0_rootJoint}/>
                 <skinnedMesh
                     geometry={nodes.Object_99.geometry}
@@ -95,5 +98,5 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
     )
 }
 
-useGLTF.preload('/astronaut.gltf')
+useGLTF.preload('/models/astronaut.gltf')
 

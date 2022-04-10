@@ -1,0 +1,10 @@
+.canvasContainer {
+    width: 100vw !important;
+    height: 100vh !important;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -9999;
+    background-color: #1c1e2c;
+}

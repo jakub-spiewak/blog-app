@@ -73,4 +73,4 @@ export default function Model({...props}: JSX.IntrinsicElements['group'] & HasPh
     )
 }
 
-useGLTF.preload('/docker.gltf')
+useGLTF.preload('/models/logos/docker.gltf')

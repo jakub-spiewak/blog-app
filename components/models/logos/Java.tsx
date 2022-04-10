@@ -46,4 +46,4 @@ export default function Model({...props}: JSX.IntrinsicElements['group'] & HasPh
     )
 }
 
-useGLTF.preload('/java.gltf')
+useGLTF.preload('/models/logos/java.gltf')
