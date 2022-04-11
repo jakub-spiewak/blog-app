@@ -8,14 +8,14 @@ export const Clouds = () => {
     const [position, setPosition] = useState(MAX_POSITION);
 
     useEffect(() => {
-        window.addEventListener("scroll", (ev) => {
+        window.addEventListener("scroll", () => {
             const scrollValue = window.scrollY / window.screen.height
             setPosition(MIN_POSITION + (MAX_POSITION - MIN_POSITION) * (1 - scrollValue))
         })
     })
     return (
-        <group position={[0, -position, -position / 2]}>
-            <Cloud color={'#fff3b3'} opacity={.3}/>
+        <group position={[0, -position, -position / 2 ]}>
+            <Cloud color={'#afa67e'} opacity={.4}/>
         </group>
     )
 }

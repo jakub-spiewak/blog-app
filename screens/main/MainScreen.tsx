@@ -1,6 +1,7 @@
 import React from "react";
 
 import styles from "./MainScreen.module.css"
+import gradientStyles from "../../css/GradientText.module.css"
 import {Box, Center, Spacer} from "@chakra-ui/react";
 
 export const MainScreen = () => {
@@ -11,8 +12,8 @@ export const MainScreen = () => {
         >
             <Spacer/>
             <Box>
-                <h1 className={`${styles.title} ${styles.gradientText}`}>Jakub Śpiewak</h1>
-                <h2 className={`${styles.subTitle} ${styles.gradientText}`}>Fullstack developer</h2>
+                <h1 className={`${styles.title} ${gradientStyles.gradient}`}>Jakub Śpiewak</h1>
+                <h2 className={`${styles.subTitle} ${gradientStyles.gradient}`}>Fullstack developer</h2>
             </Box>
             <Spacer/>
         </Center>

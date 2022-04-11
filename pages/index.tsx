@@ -3,6 +3,7 @@ import type {NextPage} from 'next'
 import Head from 'next/head'
 import {Background} from "../components/background/Background";
 import {MainScreen} from "../screens/main/MainScreen";
+import {Progress} from "@chakra-ui/react";
 
 const Home: NextPage = () => {
     return (

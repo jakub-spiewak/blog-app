@@ -1,16 +1,34 @@
 import {Canvas} from "@react-three/fiber";
-import Astronaut from "../models/Astronaut";
 import {Stars} from "../models/Stars";
-import React, {Suspense} from "react";
+import React, {lazy, Suspense} from "react";
 import {Clouds} from "../models/Clouds";
-import {LogoOrbit} from "../models/LogoOrbit";
+import {Html, useProgress} from "@react-three/drei";
+
+import loaderStyles from "./AstronautLoader.module.css"
+import gradientStyles from "../../css/GradientText.module.css"
+import {delayedPromise} from "../../utils/promise";
+
+const AstronautLoader = () => {
+    const {progress} = useProgress()
+    return (
+        <Html center className={loaderStyles.htmlContainer}>
+            <div className={loaderStyles.container}>
+                <h1 className={`${gradientStyles.gradient} ${loaderStyles.text}`}>
+                    {progress.toFixed(0)}%
+                </h1>
+            </div>
+        </Html>
+    )
+}
+
+const Astronaut = lazy(() => delayedPromise(import("../models/Astronaut"), 2000))
 
 export const BackgroundAnimation = () => {
     return (
         <Canvas>
             <ambientLight intensity={0.5}/>
             <directionalLight position={[-2, 5, 2]} intensity={0.5}/>
-            <Suspense fallback={null}>
+            <Suspense fallback={<AstronautLoader/>}>
                 <Astronaut/>
             </Suspense>
             <Suspense fallback={null}>
