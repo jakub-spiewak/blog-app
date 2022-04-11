@@ -10,7 +10,7 @@ import * as THREE from 'three'
 import React, {useEffect, useRef, useState} from 'react'
 import {useAnimations, useGLTF} from '@react-three/drei'
 import {GLTF} from 'three-stdlib'
-import {useFrame} from "@react-three/fiber";
+import {useFrame, useThree} from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -32,9 +32,11 @@ interface Position {
     y: number
 }
 
+const material = new THREE.MeshLambertMaterial({color: ASTRONAUT_COLOR})
+
 export default function Model({...props}: JSX.IntrinsicElements['group']) {
     const group = useRef<THREE.Group>()
-    const [position, setPosition] = useState<Position>({x: 0, y: 0})
+    // const [position, setPosition] = useState<Position>({x: 0, y: 0})
     const {nodes, animations} = useGLTF('/models/astronaut.gltf') as GLTFResult
     const {actions} = useAnimations(animations, group)
 
@@ -42,31 +44,34 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
         actions.moon_walk?.reset().fadeIn(0.5).play()
     }, [])
 
-    const material = new THREE.MeshLambertMaterial({color: ASTRONAUT_COLOR, transparent: false, opacity: 0.8})
 
-    useFrame(({clock}) => {
-        if (!group?.current) return;
-        // material.opacity = 0.9
-        const time = clock.getElapsedTime();
-        const sin = Math.sin(time) / 4
-        group.current.rotation.y = sin + position.x;
-        group.current.rotation.x = sin + position.y;
-    })
+    // useFrame(({clock}) => {
+    //     if (!group?.current) return;
+    //     // material.opacity = 0.9
+    //     const time = clock.getElapsedTime();
+    //     const sin = Math.sin(time) / 4
+    //     group.current.rotation.y = sin + position.x;
+    //     group.current.rotation.x = sin + position.y;
+    // })
 
-    // material.wireframe = true
 
     useEffect(() => {
-        const rotateMouse = (ev: MouseEvent) => {
-            ev.preventDefault()
-            if (!group?.current) return;
-            const pos = {
-                x: 2 * (ev.x / window.screen.width) - 1,
-                y: 2 * (ev.y / window.screen.height) - 1
-            }
-            setPosition(pos)
+        let isWaving = false;
+        const onObjectClick = () => {
+            if (isWaving) return;
+            isWaving = true
+
+            actions.wave?.reset().fadeIn(0.5).play()
+            actions.moon_walk?.fadeOut(2.5)
+            const timeoutId = setTimeout(() => {
+                actions.wave?.fadeOut(1)
+                actions.moon_walk?.reset().fadeIn(1)
+                isWaving = false
+
+                clearTimeout(timeoutId)
+            }, 3000)
         }
-        // window.addEventListener("mousemove", rotateMouse, false)
-        // window.addEventListener("pointermove", rotateMouse, false)
+        window.addEventListener("click", onObjectClick, false)
     }, [])
 
     return (
