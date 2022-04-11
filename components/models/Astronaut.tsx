@@ -36,24 +36,12 @@ const material = new THREE.MeshLambertMaterial({color: ASTRONAUT_COLOR})
 
 export default function Model({...props}: JSX.IntrinsicElements['group']) {
     const group = useRef<THREE.Group>()
-    // const [position, setPosition] = useState<Position>({x: 0, y: 0})
     const {nodes, animations} = useGLTF('/models/astronaut.gltf') as GLTFResult
     const {actions} = useAnimations(animations, group)
 
     useEffect(() => {
         actions.moon_walk?.reset().fadeIn(0.5).play()
-    }, [])
-
-
-    // useFrame(({clock}) => {
-    //     if (!group?.current) return;
-    //     // material.opacity = 0.9
-    //     const time = clock.getElapsedTime();
-    //     const sin = Math.sin(time) / 4
-    //     group.current.rotation.y = sin + position.x;
-    //     group.current.rotation.x = sin + position.y;
-    // })
-
+    })
 
     useEffect(() => {
         let isWaving = false;
@@ -72,11 +60,11 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
             }, 3000)
         }
         window.addEventListener("click", onObjectClick, false)
-    }, [])
+    })
 
     return (
         <group ref={group} {...props} dispose={null}>
-            <group rotation={[0, 0, 0]} position={[0, 0, 0]} scale={0.015}>
+            <group rotation={[0, 0, 0]} position={[0, -1.5, 0]} scale={0.015}>
                 <primitive object={nodes.GLTF_created_0_rootJoint}/>
                 <skinnedMesh
                     geometry={nodes.Object_99.geometry}

@@ -6,9 +6,9 @@ export const Background = () => {
 
     return (
         <div className={styles.canvasContainer}>
-            <Suspense fallback={null}>
+            {/*<Suspense fallback={null}>*/}
                 <BackgroundAnimation/>
-            </Suspense>
+            {/*</Suspense>*/}
         </div>
     )
 }
