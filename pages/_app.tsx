@@ -1,7 +1,6 @@
 import '../styles/globals.css'
 import type {AppProps} from 'next/app'
-import {ChakraProvider, Spinner} from "@chakra-ui/react";
-import CssReset from "@chakra-ui/css-reset/src/css-reset";
+import {ChakraProvider} from "@chakra-ui/react";
 
 function MyApp({Component, pageProps}: AppProps) {
     return (

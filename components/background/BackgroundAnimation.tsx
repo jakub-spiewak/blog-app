@@ -3,6 +3,7 @@ import Astronaut from "../models/Astronaut";
 import {Stars} from "../models/Stars";
 import React, {Suspense} from "react";
 import {Clouds} from "../models/Clouds";
+import {LogoOrbit} from "../models/LogoOrbit";
 
 export const BackgroundAnimation = () => {
     return (
@@ -18,6 +19,9 @@ export const BackgroundAnimation = () => {
             <Suspense fallback={null}>
                 <Clouds/>
             </Suspense>
+            {/*<Suspense fallback={null}>*/}
+            {/*    <LogoOrbit/>*/}
+            {/*</Suspense>*/}
         </Canvas>
     )
 }

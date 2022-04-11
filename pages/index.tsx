@@ -10,7 +10,7 @@ const Home: NextPage = () => {
             <Head>
                 <title>Jakub Śpiewak Blog</title>
                 <meta name="description" content="Blog of Jakub Śpiewak"/>
-                <link rel="icon" href="/favicon.ico"/>
+                {/*<link rel="icon" href="/favicon.ico"/>*/}
                 <link
                     rel={"preload"}
                     href={"/fonts/Magiel-Black.ttf"}

@@ -7,10 +7,10 @@ title: Animated Astronaut Character in Space Suit Loop
 */
 
 import * as THREE from 'three'
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useRef} from 'react'
 import {useAnimations, useGLTF} from '@react-three/drei'
 import {GLTF} from 'three-stdlib'
-import {useFrame, useThree} from "@react-three/fiber";
+import {LogoOrbit} from "./LogoOrbit";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -22,15 +22,11 @@ type GLTFResult = GLTF & {
     }
 }
 
+// export const ASTRONAUT_COLOR = "#232e44"
 export const ASTRONAUT_COLOR = "#232e44"
 
 type ActionName = 'wave' | 'floating' | 'idle' | 'moon_walk'
 const ActionNameList: ActionName[] = ['wave', 'floating', 'idle', 'moon_walk']
-
-interface Position {
-    x: number,
-    y: number
-}
 
 const material = new THREE.MeshLambertMaterial({color: ASTRONAUT_COLOR})
 

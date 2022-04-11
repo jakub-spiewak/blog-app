@@ -36,7 +36,7 @@ type GLTFResult = GLTF & {
 
 export default function Model({...props}: JSX.IntrinsicElements['group'] & HasPhase) {
     const group = useRef<THREE.Group>()
-    const {nodes, materials} = useGLTF('/docker.gltf') as GLTFResult
+    const {nodes, materials} = useGLTF('/models/logos/docker.gltf') as GLTFResult
 
     useFrame(({clock}) => {
         if (!group?.current) return

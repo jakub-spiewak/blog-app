@@ -22,7 +22,7 @@ type GLTFResult = GLTF & {
 
 export default function Model({...props}: JSX.IntrinsicElements['group'] & HasPhase) {
     const group = useRef<THREE.Group>()
-    const {nodes, materials} = useGLTF('/typescript.gltf') as GLTFResult
+    const {nodes, materials} = useGLTF('/models/logos/typescript.gltf') as GLTFResult
 
     useFrame(({clock}) => {
         if (!group?.current) return
