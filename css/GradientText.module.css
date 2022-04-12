@@ -14,7 +14,6 @@
     animation: shine 7s linear infinite alternate;
 }
 
-
 @keyframes shine {
     to {
         background-position: 400% center;

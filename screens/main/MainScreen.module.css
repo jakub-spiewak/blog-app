@@ -9,5 +9,36 @@
 }
 
 .titleContainer {
-    padding: 2rem;
+    /*padding: 2rem;*/
+}
+
+.aboutMe {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /*padding: 1em;*/
+    font-size: 1.1em;
+    font-family: Montserrat, Arial, serif;
+    color: #d7d7d7;
+    padding: 4em;
+    text-align: justify;
+    background-color: rgba(20, 25, 35, 0.3);
+
+}
+
+.container {
+    /*scroll-snap-type: y proximity;*/
+    /*overflow: scroll;*/
+    /*overflow-x: hidden;*/
+    height: 100vh;
+}
+
+.section {
+    flex-direction: column;
+    height: 100vh;
+    /*scroll-snap-align: start;*/
+}
+
+.aboutMeTitle {
+    font-size: 2em;
+    font-family: Magiel-Black, Arial, serif;
 }

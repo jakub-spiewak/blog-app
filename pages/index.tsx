@@ -21,7 +21,6 @@ const Home: NextPage = () => {
             </Head>
             <Background/>
             <MainScreen/>
-            <MainScreen/>
         </>
     )
 }
