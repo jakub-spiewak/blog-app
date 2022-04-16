@@ -6,9 +6,7 @@ import Kotlin from "./logos/Kotlin"
 import ReactLogo from "./logos/React"
 import Spring from "./logos/Spring"
 import Typescript from "./logos/Typescript"
-import {Euler, Group, MathUtils, Vector3} from "three";
-import {useFrame} from "@react-three/fiber";
-import {createRef, useRef, useState} from "react";
+import {Euler, MathUtils, Vector3} from "three";
 
 const LOGOS_AMOUNT = 8
 const SCALE_VALUE = 0.3
