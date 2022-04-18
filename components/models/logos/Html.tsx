@@ -21,24 +21,30 @@ type GLTFResult = GLTF & {
 export default function Model() {
     const {nodes, materials} = useGLTF('/models/logos/html.gltf') as GLTFResult
 
-    return (
-        <group dispose={null}>
-            <mesh
-                geometry={nodes.Curve.geometry}
-                material={materials['SVGMat.001']}
-                position={[0, 0, -0.01]}/>
-            <mesh
-                geometry={nodes.Curve001.geometry}
-                material={materials['SVGMat.002']}
-                position={[0.32, 0, 0.01]}/>
-            <mesh
-                geometry={nodes.Curve002.geometry} material={materials['SVGMat.003']} position={[-0.27, 0, 0.02]}
-                scale={[1, 0.71, 1]}/>
-            <mesh
-                geometry={nodes.Curve003.geometry} material={materials['SVGMat.004']} position={[0.25, 0, 0.03]}
-                scale={[1, 0.86, 1]}/>
-        </group>
-    )
+    return (<group dispose={null}>
+        <mesh
+          geometry={nodes.Curve.geometry}
+          material={materials['SVGMat.001']}
+          position={[0, 0, -0.01]}
+        />
+        <mesh
+          geometry={nodes.Curve001.geometry}
+          material={materials['SVGMat.002']}
+          position={[0.32, 0, 0.01]}
+        />
+        <mesh
+          geometry={nodes.Curve002.geometry}
+          material={materials['SVGMat.003']}
+          position={[-0.27, 0, 0.02]}
+          scale={[1, 0.71, 1]}
+        />
+        <mesh
+          geometry={nodes.Curve003.geometry}
+          material={materials['SVGMat.004']}
+          position={[0.25, 0, 0.03]}
+          scale={[1, 0.86, 1]}
+        />
+    </group>)
 }
 
 useGLTF.preload('/models/logos/html.gltf')

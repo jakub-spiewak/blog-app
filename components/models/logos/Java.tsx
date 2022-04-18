@@ -1,9 +1,7 @@
-import React, {useRef} from 'react'
+import React from 'react'
 import * as THREE from 'three'
 import {useGLTF} from '@react-three/drei'
 import {GLTF} from 'three-stdlib'
-import {useFrame} from "@react-three/fiber";
-import {HasPhase, RADIUS} from "../LogoOrbit";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -21,8 +19,12 @@ export default function Model() {
 
     return (
         <group dispose={null}>
-            <mesh geometry={nodes.Curve.geometry} material={materials['SVGMat.001']} position={[-0.01, 0, 0.4]}/>
-            <mesh geometry={nodes.Curve002.geometry} material={materials['SVGMat.003']} position={[0.01, 0, -0.4]}/>
+            <mesh geometry={nodes.Curve.geometry}
+              material={materials['SVGMat.001']}
+              position={[-0.01, 0, 0.4]}/>
+            <mesh geometry={nodes.Curve002.geometry}
+              material={materials['SVGMat.003']}
+              position={[0.01, 0, -0.4]}/>
         </group>
     )
 }

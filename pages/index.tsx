@@ -3,20 +3,20 @@ import type {NextPage} from 'next'
 import Head from 'next/head'
 import {Background} from "../components/background/Background";
 import {MainScreen} from "../screens/main/MainScreen";
-import {Progress} from "@chakra-ui/react";
 
 const Home: NextPage = () => {
     return (
         <>
             <Head>
                 <title>Jakub Śpiewak Blog</title>
-                <meta name="description" content="Blog of Jakub Śpiewak"/>
+                <meta name="description"
+                  content="Blog of Jakub Śpiewak"/>
                 {/*<link rel="icon" href="/favicon.ico"/>*/}
                 <link
-                    rel={"preload"}
-                    href={"/fonts/Magiel-Black.ttf"}
-                    as={"font"}
-                    crossOrigin={""}
+                  rel={"preload"}
+                  href={"/fonts/Magiel-Black.ttf"}
+                  as={"font"}
+                  crossOrigin={""}
                 />
             </Head>
             <Background/>

@@ -20,7 +20,8 @@ export const Clouds = () => {
 
     return (
         <group position={[0, -position, -position / 2]}>
-            <Cloud depth={2} opacity={0.3}/>
+            <Cloud depth={2}
+              opacity={0.3}/>
         </group>
     )
 }

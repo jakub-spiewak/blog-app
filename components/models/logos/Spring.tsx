@@ -17,7 +17,8 @@ export default function Model() {
 
     return (
         <group dispose={null}>
-            <mesh geometry={nodes.Curve.geometry} material={materials['SVGMat.001']}/>
+            <mesh geometry={nodes.Curve.geometry}
+              material={materials['SVGMat.001']}/>
         </group>
     )
 }

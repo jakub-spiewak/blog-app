@@ -2,7 +2,6 @@ import * as THREE from 'three'
 import React, {useEffect, useRef, useState} from 'react'
 import {useAnimations, useGLTF} from '@react-three/drei'
 import {GLTF} from 'three-stdlib'
-import {LogoOrbit} from "./LogoOrbit";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -48,28 +47,31 @@ const Astronaut = () => {
     }, [actions.moon_walk, actions.wave, isWaving])
 
     return (
-        <group ref={group} dispose={null}>
-            <group rotation={[0, 0, 0]} position={[0, -1.5, 0]} scale={0.015}>
+        <group ref={group}
+          dispose={null}>
+            <group rotation={[0, 0, 0]}
+              position={[0, -1.5, 0]}
+              scale={0.015}>
                 <primitive object={nodes.GLTF_created_0_rootJoint}/>
                 <skinnedMesh
-                    geometry={nodes.Object_99.geometry}
-                    material={material}
-                    skeleton={nodes.Object_99.skeleton}
+                  geometry={nodes.Object_99.geometry}
+                  material={material}
+                  skeleton={nodes.Object_99.skeleton}
                 />
                 <skinnedMesh
-                    geometry={nodes.Object_100.geometry}
-                    material={material}
-                    skeleton={nodes.Object_100.skeleton}
+                  geometry={nodes.Object_100.geometry}
+                  material={material}
+                  skeleton={nodes.Object_100.skeleton}
                 />
                 <skinnedMesh
-                    geometry={nodes.Object_103.geometry}
-                    material={material}
-                    skeleton={nodes.Object_103.skeleton}
+                  geometry={nodes.Object_103.geometry}
+                  material={material}
+                  skeleton={nodes.Object_103.skeleton}
                 />
                 <skinnedMesh
-                    geometry={nodes.Object_106.geometry}
-                    material={material}
-                    skeleton={nodes.Object_106.skeleton}
+                  geometry={nodes.Object_106.geometry}
+                  material={material}
+                  skeleton={nodes.Object_106.skeleton}
                 />
             </group>
         </group>

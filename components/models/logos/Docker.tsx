@@ -31,8 +31,7 @@ type GLTFResult = GLTF & {
 export default function Model() {
     const {nodes, materials} = useGLTF('/models/logos/docker.gltf') as GLTFResult
 
-    return (
-        <group dispose={null}>
+    return (<group dispose={null}>
             <mesh
                 geometry={nodes.Curve.geometry}
                 material={materials['SVGMat.018']}
@@ -85,8 +84,7 @@ export default function Model() {
                 position={[-0.12, 0, 0.18]}
                 scale={[1, 0.21, 1]}
             />
-        </group>
-    )
+        </group>)
 }
 
 useGLTF.preload('/models/logos/docker.gltf')
