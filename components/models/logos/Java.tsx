@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {ForwardedRef, forwardRef} from 'react'
 import * as THREE from 'three'
+import {Group} from 'three'
 import {useGLTF} from '@react-three/drei'
 import {GLTF} from 'three-stdlib'
 
@@ -14,11 +15,14 @@ type GLTFResult = GLTF & {
     }
 }
 
-export default function Model() {
+const Model = forwardRef((props, ref: ForwardedRef<Group>) => {
     const {nodes, materials} = useGLTF('/models/logos/java.gltf') as GLTFResult
 
     return (
-        <group dispose={null}>
+        <group
+          ref={ref}
+          dispose={null}
+        >
             <mesh geometry={nodes.Curve.geometry}
               material={materials['SVGMat.001']}
               position={[-0.01, 0, 0.4]}/>
@@ -27,6 +31,7 @@ export default function Model() {
               position={[0.01, 0, -0.4]}/>
         </group>
     )
-}
+})
 
 useGLTF.preload('/models/logos/java.gltf')
+export default Model

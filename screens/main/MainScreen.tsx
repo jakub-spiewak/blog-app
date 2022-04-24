@@ -6,14 +6,25 @@ import {Box, Center, Container, Divider} from "@chakra-ui/react";
 
 export const MainScreen = () => {
     return (
-        <Box as={"main"} className={styles.container} id={"landingPageContainer"}>
-            <Center as={"section"} className={styles.section}>
+        <Box
+          as={"main"}
+          className={styles.container}
+          id={"landingPageContainer"}
+        >
+            <Center
+              as={"section"}
+              className={styles.section}
+            >
                 <Box>
                     <h1 className={`${styles.title} ${gradientStyles.gradient}`}>Jakub Śpiewak</h1>
                     <h2 className={`${styles.subTitle} ${gradientStyles.gradient}`}>Fullstack developer</h2>
                 </Box>
             </Center>
-            <Center as={"section"} className={`${styles.section} ${gradientStyles.background}`}>
+            <Box className={styles.section}/>
+            <Center
+              as={"section"}
+              className={`${styles.section} ${gradientStyles.background}`}
+            >
                 <Container className={styles.aboutMe}>
                     <h2 className={`${styles.aboutMeTitle} ${gradientStyles.gradient}`}>About me</h2>
                     <p>

@@ -1,14 +1,15 @@
 import React from "react";
 import styles from "./Background.module.css"
-import {BackgroundAnimation} from "./BackgroundAnimation";
+import {BackgroundContent} from "./BackgroundContent";
+import {Canvas} from "@react-three/fiber";
 
 export const Background = () => {
 
     return (
         <div className={styles.canvasContainer}>
-            {/*<Suspense fallback={null}>*/}
-            <BackgroundAnimation/>
-            {/*</Suspense>*/}
+            <Canvas>
+                <BackgroundContent/>
+            </Canvas>
         </div>
     )
 }

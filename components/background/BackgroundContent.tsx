@@ -1,13 +1,12 @@
-import {Canvas} from "@react-three/fiber";
 import {Stars} from "../models/Stars";
-import React, {lazy, Suspense, useRef} from "react";
+import React, {Fragment, lazy, Suspense} from "react";
 import {Clouds} from "../models/Clouds";
 import {Html, useProgress} from "@react-three/drei";
 
 import loaderStyles from "./AstronautLoader.module.css"
 import gradientStyles from "../../css/GradientText.module.css"
 import {delayedPromise} from "../../utils/promise";
-import {Group} from "three";
+import {LogoOrbit} from "../models/LogoOrbit";
 
 const AstronautLoader = () => {
     const {progress} = useProgress()
@@ -25,26 +24,26 @@ const AstronautLoader = () => {
 
 const Astronaut = lazy(() => delayedPromise(import("../models/Astronaut"), 2000))
 
-export const BackgroundAnimation = () => {
-    const starsRef = useRef<Group>(null)
+export const BackgroundContent = () => {
 
     return (
-        <Canvas>
+        <Fragment>
             <ambientLight intensity={0.5}/>
-            <directionalLight position={[-2, 5, 2]}
+            <directionalLight
+              position={[-2, 5, 2]}
               intensity={0.5}/>
             <Suspense fallback={<AstronautLoader/>}>
                 <Astronaut/>
             </Suspense>
             <Suspense fallback={null}>
-                <Stars ref={starsRef}/>
+                <Stars/>
             </Suspense>
             <Suspense fallback={null}>
                 <Clouds/>
             </Suspense>
-            {/*<Suspense fallback={null}>*/}
-            {/*    <LogoOrbit/>*/}
-            {/*</Suspense>*/}
-        </Canvas>
+            <Suspense fallback={null}>
+                <LogoOrbit/>
+            </Suspense>
+        </Fragment>
     )
 }

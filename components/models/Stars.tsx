@@ -1,15 +1,21 @@
 import {Group} from "three";
 import {Stars as DreiStars} from "@react-three/drei";
-import React, {RefObject} from "react";
+import React, {useRef} from "react";
+import {useFrame} from "@react-three/fiber";
 
-interface StarsProps {
-    ref: RefObject<Group>
-}
+export const Stars = () => {
+    const starsRef = useRef<Group>(null)
 
-export const Stars = (props: StarsProps) => {
-    const {ref} = props
+    useFrame(({clock}) => {
+        if (!starsRef.current) return;
+
+        const time = clock.getElapsedTime()
+        const rotation = time / 32
+
+        starsRef.current.rotation.set(rotation, rotation, rotation)
+    })
     return (
-        <group ref={ref}>
+        <group ref={starsRef}>
             <DreiStars fade/>
         </group>
     )

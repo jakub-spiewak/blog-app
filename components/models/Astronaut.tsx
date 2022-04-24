@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useRef} from 'react'
 import {useAnimations, useGLTF} from '@react-three/drei'
 import {GLTF} from 'three-stdlib'
 
@@ -13,7 +13,6 @@ type GLTFResult = GLTF & {
     }
 }
 
-// export const ASTRONAUT_COLOR = "#232e44"
 export const ASTRONAUT_COLOR = "#232e44"
 
 // type ActionName = 'wave' | 'floating' | 'idle' | 'moon_walk'
@@ -21,30 +20,30 @@ const material = new THREE.MeshLambertMaterial({color: ASTRONAUT_COLOR})
 
 const Astronaut = () => {
     const group = useRef<THREE.Group>(null)
-    const [isWaving, setIsWaving] = useState(false)
     const {nodes, animations} = useGLTF('/models/astronaut.gltf') as GLTFResult
     const {actions} = useAnimations(animations, group)
 
     useEffect(() => {
         actions.moon_walk?.reset().fadeIn(0.5).play()
-        const onObjectClick = () => {
-            setIsWaving(true)
-        }
-        window.addEventListener("click", onObjectClick, false)
     })
 
     useEffect(() => {
-        if (!isWaving) return;
-        actions.wave?.reset().fadeIn(0.5).play()
-        actions.moon_walk?.fadeOut(2.5)
-        const timeoutId = setTimeout(() => {
-            actions.wave?.fadeOut(1)
-            actions.moon_walk?.reset().fadeIn(1)
-            setIsWaving(false)
+        let isWaving = false
+        const onClick = () => {
+            if (isWaving) return
+            isWaving = true
 
-            clearTimeout(timeoutId)
-        }, 3000)
-    }, [actions.moon_walk, actions.wave, isWaving])
+            actions.wave?.reset().fadeIn(0.5).play()
+            actions.moon_walk?.fadeOut(2.5)
+            const timeoutId = setTimeout(() => {
+                actions.wave?.fadeOut(1)
+                actions.moon_walk?.reset().fadeIn(1)
+                isWaving = false
+                clearTimeout(timeoutId)
+            }, 3000)
+        }
+        window.addEventListener("click", onClick, false)
+    })
 
     return (
         <group ref={group}

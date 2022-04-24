@@ -3,12 +3,10 @@
     "react",
     "import",
     "react-hooks",
-    "prettier",
-    "@typescript-eslint/eslint-plugin"
+    "prettier"
   ],
   "extends": [
     "next",
-    "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "prettier"
   ],
