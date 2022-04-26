@@ -1,18 +1,18 @@
-import {Stars} from "../models/Stars";
-import React, {Fragment, lazy, Suspense} from "react";
-import {Clouds} from "../models/Clouds";
+import React, {Fragment} from "react";
 import {Html, useProgress} from "@react-three/drei";
 
 import loaderStyles from "./AstronautLoader.module.css"
 import gradientStyles from "../../css/GradientText.module.css"
-import {delayedPromise} from "../../utils/promise";
-import {LogoOrbit} from "../models/LogoOrbit";
+import Room from "../models/Room";
+import {useFrame, useThree} from "@react-three/fiber";
 
 const AstronautLoader = () => {
     const {progress} = useProgress()
     return (
-        <Html center
-          className={loaderStyles.htmlContainer}>
+        <Html
+          center
+          className={loaderStyles.htmlContainer}
+        >
             <div className={loaderStyles.container}>
                 <h1 className={`${gradientStyles.gradient} ${loaderStyles.text}`}>
                     {progress.toFixed(0)}%
@@ -22,28 +22,26 @@ const AstronautLoader = () => {
     )
 }
 
-const Astronaut = lazy(() => delayedPromise(import("../models/Astronaut"), 2000))
-
 export const BackgroundContent = () => {
+    useThree(({camera}) => {
+        // camera.type = "PerspectiveCamera"
+        camera.position.set(-2.14, 3.6, 3.6)
+        camera.rotation.set(-.7, .5, .4)
+        console.log(camera.position)
+        console.log(camera.rotation)
+    })
+
+    useFrame(({camera}) => {
+
+        // console.log(camera.position)
+        // console.log(camera.rotation)
+    })
 
     return (
         <Fragment>
-            <ambientLight intensity={0.5}/>
-            <directionalLight
-              position={[-2, 5, 2]}
-              intensity={0.5}/>
-            <Suspense fallback={<AstronautLoader/>}>
-                <Astronaut/>
-            </Suspense>
-            <Suspense fallback={null}>
-                <Stars/>
-            </Suspense>
-            <Suspense fallback={null}>
-                <Clouds/>
-            </Suspense>
-            <Suspense fallback={null}>
-                <LogoOrbit/>
-            </Suspense>
+            <directionalLight position={[3, 2, 3]}/>
+            <directionalLight/>
+            <Room/>
         </Fragment>
     )
 }
