@@ -39,7 +39,7 @@ export const BackgroundContent = () => {
 
     return (
         <Fragment>
-            <directionalLight position={[3, 2, 3]}/>
+            <directionalLight position={[5, -5, 3]}/>
             <directionalLight/>
             <Room/>
         </Fragment>
