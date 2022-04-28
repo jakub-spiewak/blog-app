@@ -1,24 +1,25 @@
 import React from "react";
 import type {NextPage} from 'next'
 import Head from 'next/head'
-import {Background} from "../components/background/Background";
+import {MainModel} from "../components/models/MainModel";
 
 const Home: NextPage = () => {
     return (
         <>
             <Head>
                 <title>Jakub Śpiewak Blog</title>
-                <meta name="description"
-                      content="Blog of Jakub Śpiewak"/>
-                {/*<link rel="icon" href="/favicon.ico"/>*/}
+                <meta
+                  name="description"
+                  content="Jakub Śpiewak"
+                />
                 <link
-                    rel={"preload"}
-                    href={"/fonts/Magiel-Black.ttf"}
-                    as={"font"}
-                    crossOrigin={""}
+                  rel={"preload"}
+                  ref={"/fonts/Magiel-Black.ttf"}
+                  type={"font"}
+                  crossOrigin={""}
                 />
             </Head>
-            <Background/>
+            <MainModel/>
         </>
     )
 }
