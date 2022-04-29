@@ -10,7 +10,7 @@ export const Floor = () => {
         >
             <planeGeometry args={[10, 10]}/>
             <ReflectiveMaterial
-              emissive={"black"}
+              emissive={"white"}
               normalMap={normalMap}/>
         </mesh>
     )
