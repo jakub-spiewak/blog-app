@@ -6,25 +6,25 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-@font-face {
-    font-family: Magiel-Black;
-    src: url("/fonts/Magiel-Black.ttf");
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-}
+/*@font-face {*/
+/*    font-family: Magiel-Black;*/
+/*    src: url("/fonts/Magiel-Black.ttf");*/
+/*    font-style: normal;*/
+/*    font-weight: 400;*/
+/*    font-display: swap;*/
+/*}*/
 
-@font-face {
-    font-family: Montserrat;
-    src: url("https://fonts.googleapis.com/css?family=Montserrat");
-    font-style: auto;
-    font-weight: auto;
-    font-display: swap;
-}
+/*@font-face {*/
+/*    font-family: Montserrat;*/
+/*    src: url("https://fonts.googleapis.com/css?family=Montserrat");*/
+/*    font-style: auto;*/
+/*    font-weight: auto;*/
+/*    font-display: swap;*/
+/*}*/
 
-.background {
-    position: absolute;
-}
+/*.background {*/
+/*    position: absolute;*/
+/*}*/
 
 .canvasContainer {
     width: 100vw !important;
