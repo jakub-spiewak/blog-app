@@ -13,11 +13,12 @@ export const MainModel = () => {
                 position: [0, 0, -2],
             }}
         >
-            {/*<directionalLight*/}
-            {/*  rotation={[Math.PI / 2, 0, 0]}*/}
-            {/*  position={[1, -5, -5]}*/}
-            {/*  intensity={1}*/}
-            {/*/>*/}
+            {/*<ambientLight/>*/}
+            <directionalLight
+                rotation={[Math.PI / 2, 0, 0]}
+                position={[0, -5, -5]}
+                intensity={1}
+            />
             <Stats/>
             <Room/>
             {/*<Stats/>*/}

@@ -1,84 +1,72 @@
-import React, {useMemo, useRef, useState} from 'react'
-import {Sparkles, useNormalTexture, useTexture} from "@react-three/drei";
-import {ReflectiveMaterial} from "./materials/ReflectiveMaterial";
-import {MathUtils, PlaneGeometry, Vector2} from "three";
-import {useFrame} from "@react-three/fiber";
+import React, {useMemo, useRef} from 'react'
+import {Stars, useNormalTexture} from "@react-three/drei";
 import {SimplexNoise} from "three-stdlib";
+import {Mesh, SphereGeometry} from "three";
+import {useFrame} from "@react-three/fiber";
 
 const deg90 = Math.PI / 2
 
 export default function Model() {
-    const paintingRef = useRef<PlaneGeometry>(null)
-    const [mouse, setMouse] = useState<Vector2>(new Vector2(0, 0))
-
-    const [backgroundNormalMap] = useNormalTexture(14, {offset: [0, 0], anisotropy: 2, repeat: [4, 4]})
-    const vangoghTexture = useTexture("/models/vangogh.jpg")
+    const [backgroundNormalMap] = useNormalTexture(17, {offset: [0, 0], anisotropy: 2, repeat: [8, 8]})
+    const sphereGeometryRef = useRef<SphereGeometry>(null)
+    const refSphere = useRef<SphereGeometry>(null)
+    const starsMeshRef = useRef<Mesh>(null)
 
     const simplex = useMemo(() => new SimplexNoise(), [])
-    // useThree(({gl}) => {
-    //     gl.outputEncoding = THREE.sRGBEncoding
-    //     // gl.physicallyCorrectLights = true
-    // })
 
     useFrame(({clock}) => {
-        if (!paintingRef.current) return;
+        if (!sphereGeometryRef.current || !refSphere.current) return;
 
-        const timeFactor = clock.getElapsedTime()
-        const indexFactor = 0.4
+        const time = clock.getElapsedTime() * 0.1
 
-        const position = paintingRef.current.attributes.position
+        const positions = refSphere.current.attributes.position
+        const visiblePositions = sphereGeometryRef.current.attributes.position
 
-        for (let i = 0; i < position.count; i++) {
-            // const y = 0.5 * Math.sin(i / 5 + (time + i) / 7);
-            const x = position.getX(i)
-            const y = position.getY(i)
-            const currentPoint = new Vector2(x,y)
+        const NOISE_SCALE = 0.1
+        const NOISE_POS_FACTOR = 1
 
-            const distance = mouse.distanceTo(currentPoint)
+        for (let i = 0; i < positions.count; i++) {
+            const x = positions.getX(i)
+            const y = positions.getY(i)
+            const z = positions.getZ(i)
 
-            const z = (
-                simplex.noise(
-                    (x + timeFactor) * indexFactor,
-                    (y + timeFactor) * indexFactor
-                )
-                + 1) * 0.2 -  (1 / (1 + distance))
-            position.setZ(i, z);
+            const newX = x + simplex.noise((x + time) * NOISE_POS_FACTOR, y) * NOISE_SCALE
+            const newY = y + simplex.noise((y + time) * NOISE_POS_FACTOR, z) * NOISE_SCALE
+            const newZ = z + simplex.noise((z + time) * NOISE_POS_FACTOR, x) * NOISE_SCALE
+
+            visiblePositions.setX(i, newX)
+            visiblePositions.setY(i, newY)
+            visiblePositions.setZ(i, newZ)
         }
-        position.needsUpdate = true
+
+        starsMeshRef.current?.rotation.set(0, time / 4, time / 4)
+
+        visiblePositions.needsUpdate = true;
     })
 
     return (
         <group dispose={null}>
-            <Sparkles scale={[10, 10, 2]}/>
-            <directionalLight
-                position={[0, 0, -5]}
-                intensity={1}
-            />
-            <mesh
-                rotation={[0, Math.PI, 0]}
-                position={[0, 0, 1]}
-                onPointerMove={(event) => setMouse(event.pointer)}
-            >
-                <planeGeometry args={[10, 10]}/>
-                <ReflectiveMaterial
-                    color={"white"}
-                    emissive={"black"}
+            <mesh ref={starsMeshRef}>
+                <Stars/>
+            </mesh>
+            <mesh>
+                <sphereGeometry
+                    ref={sphereGeometryRef}
+                    args={[1, 120, 120]}
+                />
+                <meshStandardMaterial
                     normalMap={backgroundNormalMap}
+                    metalness={.2}
+                    roughness={.4}
+                />
+                {/*<MeshWobbleMaterial factor={1} speed={10}/>*/}
+            </mesh>
+            <mesh visible={false}>
+                <sphereGeometry
+                    ref={refSphere}
+                    args={[1, 120, 120]}
                 />
             </mesh>
-            <mesh
-                rotation={[0, Math.PI, 0]}
-                position={[0, 0, 0]}
-            >
-                <planeGeometry
-                    ref={paintingRef}
-                    args={[4, 2, 400, 200]}
-                />
-                <meshBasicMaterial
-                    map={vangoghTexture}
-                />
-            </mesh>
-
         </group>
     )
 }
