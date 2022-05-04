@@ -10,7 +10,7 @@ export const MainModel = () => {
         <Canvas
             className={"canvasContainer"}
             camera={{
-                position: [0, 0, -2],
+                position: [0, 2, -4],
             }}
         >
             {/*<directionalLight*/}
