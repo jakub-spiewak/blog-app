@@ -1,0 +1,22 @@
+@import "../../css/GradientText.module.css";
+
+.htmlContainer {
+    margin-top: calc(-16rem);
+}
+
+.container {
+    font-weight: 300;
+    width: 6rem;
+    height: 6rem;
+    border: rgba(252, 176, 69, 1) 0.125rem solid;
+}
+
+.text {
+    font-size: 2em;
+    margin: auto;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
