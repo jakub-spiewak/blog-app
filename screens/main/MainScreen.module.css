@@ -2,10 +2,19 @@
     font-size: 5em;
     margin-bottom: 0;
     font-family: Magiel-Black, Arial, serif;
+    line-height: 1.5em;
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        line-height: 1em;
+        padding-bottom: 2rem;
+    }
 }
 
 .subTitle {
     margin-top: 0;
+    font-size: 1em;
 }
 
 .container {
@@ -14,8 +23,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
 }
 
-.content {
-    font-size: 1em;
+.subTitleContainer {
+    border-top-width: 0.125rem;
+    border-color: #9E907B;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.iconGroup {
+    gap: 0.5rem;
+    display: flex;
 }
