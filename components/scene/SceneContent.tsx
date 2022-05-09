@@ -3,7 +3,6 @@ import React, {Fragment, Suspense} from "react";
 import {ModelLoader} from "./ModelLoader";
 import Astronaut from "./models/Astronaut";
 import {useFrame} from "@react-three/fiber";
-import {Stats} from "@react-three/drei";
 import {Clouds} from "./models/Clouds";
 import {Lights} from "./models/Lights";
 
@@ -16,7 +15,6 @@ export const SceneContent = () => {
     })
     return (
         <Fragment>
-            <Stats/>
             <directionalLight
                 position={[-2, 5, 2]}
                 intensity={0.8}
