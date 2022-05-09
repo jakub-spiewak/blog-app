@@ -1,10 +1,16 @@
 import {Stars} from "./models/Stars";
-import React, {Fragment, Suspense} from "react";
+import React, {Fragment, lazy, Suspense} from "react";
 import {ModelLoader} from "./ModelLoader";
-import Astronaut from "./models/Astronaut";
 import {useFrame} from "@react-three/fiber";
 import {Clouds} from "./models/Clouds";
 import {Lights} from "./models/Lights";
+
+const Astronaut = lazy(() => {
+    return Promise.all([
+        import("./models/Astronaut"),
+        new Promise((resolve) => setTimeout(resolve, 3000))
+    ]).then(([moduleExports]) => moduleExports);
+})
 
 export const SceneContent = () => {
 

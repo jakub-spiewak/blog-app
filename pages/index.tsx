@@ -9,14 +9,15 @@ const Home: NextPage = () => {
         <>
             <Head>
                 <title>Jakub Śpiewak Blog</title>
-                <meta name="description"
-                      content="Blog of Jakub Śpiewak"/>
-                {/*<link rel="icon" href="/favicon.ico"/>*/}
+                <meta
+                    name="description"
+                    content="Jakub Śpiewak Blog"
+                />
                 <link
                     rel={"preload"}
                     href={"/fonts/Magiel-Black.ttf"}
                     as={"font"}
-                    crossOrigin={""}
+                    crossOrigin={"*"}
                 />
             </Head>
             <Scene/>

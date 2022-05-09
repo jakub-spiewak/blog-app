@@ -6,7 +6,7 @@ import {BsGithub, BsInstagram, BsLinkedin} from "react-icons/bs";
 import {Link} from "@chakra-ui/react";
 import {IconType} from "react-icons";
 
-const ICON_COLOR = "#9E907B"
+const ICON_COLOR = "#c09761"
 
 interface IconProps {
     icon: IconType,
