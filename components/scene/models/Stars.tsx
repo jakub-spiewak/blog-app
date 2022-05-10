@@ -3,7 +3,7 @@ import {Stars as DreiStars} from "@react-three/drei";
 import React, {useRef} from "react";
 import {useFrame} from "@react-three/fiber";
 
-export const Stars = () => {
+const Stars = () => {
     const starsRef = useRef<Group>(null)
 
     useFrame(({clock}) => {
@@ -21,3 +21,5 @@ export const Stars = () => {
         </group>
     )
 }
+
+export default Stars

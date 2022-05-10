@@ -1,7 +1,7 @@
 import React from "react";
 import {Cloud} from "@react-three/drei";
 
-export const Clouds = () => {
+const Clouds = () => {
     return (
         <group position={[0, 0, -13]}>
             <Cloud
@@ -11,3 +11,5 @@ export const Clouds = () => {
         </group>
     )
 }
+
+export default Clouds

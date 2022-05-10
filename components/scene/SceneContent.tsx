@@ -1,24 +1,11 @@
-import {Stars} from "./models/Stars";
-import React, {Fragment, lazy, Suspense} from "react";
+import React, {Fragment, Suspense} from "react";
+import Astronaut from "./models/Astronaut";
+import Stars from "./models/Stars";
+import Clouds from "./models/Clouds";
+import Lights from "./models/Lights";
 import {ModelLoader} from "./ModelLoader";
-import {useFrame} from "@react-three/fiber";
-import {Clouds} from "./models/Clouds";
-import {Lights} from "./models/Lights";
-
-const Astronaut = lazy(() => {
-    return Promise.all([
-        import("./models/Astronaut"),
-        new Promise((resolve) => setTimeout(resolve, 3000))
-    ]).then(([moduleExports]) => moduleExports);
-})
 
 export const SceneContent = () => {
-
-    useFrame(({camera, clock}) => {
-        const time = clock.getElapsedTime() / 4;
-
-        // camera.position.setX((Math.sin(time)) * 2)
-    })
     return (
         <Fragment>
             <directionalLight
@@ -27,8 +14,6 @@ export const SceneContent = () => {
             />
             <Suspense fallback={<ModelLoader/>}>
                 <Astronaut/>
-            </Suspense>
-            <Suspense fallback={null}>
                 <Stars/>
                 <Clouds/>
                 <Lights/>

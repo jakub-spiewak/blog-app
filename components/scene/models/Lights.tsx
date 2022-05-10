@@ -5,7 +5,8 @@ import {useFrame} from "@react-three/fiber";
 const RADIUS = 16
 const PHASE_1 = 2 * Math.PI / 3
 const PHASE_2 = 4 * Math.PI / 3
-export const Lights = () => {
+
+const Lights = () => {
     const light1 = useRef<PointLight>(null)
     const light2 = useRef<PointLight>(null)
     const light3 = useRef<PointLight>(null)
@@ -40,3 +41,5 @@ export const Lights = () => {
         </group>
     )
 }
+
+export default Lights

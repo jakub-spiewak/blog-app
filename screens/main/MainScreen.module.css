@@ -13,6 +13,7 @@
 }
 
 .subTitle {
+    color: #c09761;
     margin-top: 0;
     font-size: 1em;
 }
@@ -74,7 +75,7 @@
 }
 
 .iconGroup {
-    gap: 0.5rem;
+    /*gap: 0.25rem;*/
     display: flex;
     align-items: center;
 }
