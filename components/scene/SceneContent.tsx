@@ -1,9 +1,10 @@
-import React, {Fragment, Suspense} from "react";
+import React, {Fragment, lazy, Suspense} from "react";
 import {ModelLoader} from "./ModelLoader";
-import Astronaut from "./models/Astronaut";
-import Stars from "./models/Stars";
-import Clouds from "./models/Clouds";
-import Lights from "./models/Lights";
+
+const Astronaut = lazy(() => import("./models/Astronaut"))
+const Stars = lazy(() => import("./models/Stars"))
+const Clouds = lazy(() => import("./models/Clouds"))
+const Lights = lazy(() => import("./models/Lights"))
 
 export const SceneContent = () => {
     return (
@@ -14,6 +15,8 @@ export const SceneContent = () => {
             />
             <Suspense fallback={<ModelLoader/>}>
                 <Astronaut/>
+            </Suspense>
+            <Suspense fallback={null}>
                 <Stars/>
                 <Clouds/>
                 <Lights/>
