@@ -19,7 +19,7 @@ const IconLink = ({icon, aria, link}: IconProps): JSX.Element => {
     const IconFromProps = icon
     return (
         <Link marginRight={"1rem"} href={link}>
-            <IconFromProps aria-label={aria} color={ICON_COLOR} size={"2rem"}/>
+            <IconFromProps aria-label={aria} color={ICON_COLOR} size={32}/>
         </Link>
     )
 }
